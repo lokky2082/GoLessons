@@ -1,7 +1,7 @@
-package main
+package currentTime
 
 import "fmt"
 
-func main () {
+func currentTime () {
 	fmt.Println("Hello, world")
 }
