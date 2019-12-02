@@ -1,7 +1,15 @@
-package currentTime
+package main
 
-import "fmt"
+import (
+	"fmt";
+	"github.com/beevik/ntp"
+)
 
-func currentTime () {
-	fmt.Println("Hello, world")
+func main () {
+	time,err:= ntp.Time("0.beevik-ntp.pool.ntp.org")
+	if err == nil {
+    fmt.Println(time)
+	} else {
+		exit()
+	}
 }
