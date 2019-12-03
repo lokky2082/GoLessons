@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt";
-	"github.com/beevik/ntp"
+	"github.com/beevik/ntp";
+	"os"
 )
 
 func main () {
@@ -10,6 +11,6 @@ func main () {
 	if err == nil {
     fmt.Println(time)
 	} else {
-		exit()
+		fmt.Fprintln(os.Stderr, err)
 	}
 }

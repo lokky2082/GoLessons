@@ -1,7 +1,7 @@
-package currentTime
+package main
 
 import "testing"
 
-func TestCurrentTime(t *testing.T) {
+func TestMain(t *testing.T) {
 	
 }
