@@ -1,13 +1,14 @@
 package unpack
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 	"unicode"
 )
 
 // Unpack convert strings like 'a5b4' into 'aaaaabbbb'
-func Unpack(s string) string {
+func Unpack(s string) (string, error) {
 	var result strings.Builder
 	//var currentrune = ""
 	//var count = ""
@@ -19,7 +20,7 @@ func Unpack(s string) string {
 		} else if unicode.IsNumber(r) {
 			fmt.Printf("%s is number\n", string(r))
 		} else {
-			return nil
+			return "", errors.New("symbol is not alowed")
 		}
 		/*var num, numerr = strconv.Atoi(string(r))
 		if numerr != nil && count  {
@@ -47,5 +48,5 @@ func Unpack(s string) string {
 		fmt.Printf("%s starts at byte position %d\n", string(r), i)*/
 	}
 	//return "xx", "error"
-	return result.String()
+	return result.String(), nil
 }

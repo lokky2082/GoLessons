@@ -7,6 +7,10 @@ import (
 )
 
 func main() {
-	var unpacked = unpack.Unpack("ж5b4")
-	fmt.Printf("unpacked = %s\n", unpacked)
+	var unpacked, err = unpack.Unpack("/ж5b4")
+	if err != nil {
+		fmt.Printf("unpackedErr: %s\n", err)
+	} else {
+		fmt.Printf("unpacked = %s\n", unpacked)
+	}
 }
