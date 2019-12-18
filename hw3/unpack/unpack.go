@@ -3,6 +3,7 @@ package unpack
 import (
 	"errors"
 	"fmt"
+	"strconv"
 	"strings"
 	"unicode"
 )
@@ -10,43 +11,38 @@ import (
 // Unpack convert strings like 'a5b4' into 'aaaaabbbb'
 func Unpack(s string) (string, error) {
 	var result strings.Builder
-	//var currentrune = ""
-	//var count = ""
-
+	var currentStr = ""
+	var count = ""
+	fmt.Printf("%s test\n", currentStr)
 	for i, r := range s {
 		if unicode.IsLetter(r) {
-			result.WriteString(string(r))
-			fmt.Printf("%s is letter\n", string(r), i, s)
-		} else if unicode.IsNumber(r) {
-			fmt.Printf("%s is number\n", string(r))
-		} else {
-			return "", errors.New("symbol is not alowed")
-		}
-		/*var num, numerr = strconv.Atoi(string(r))
-		if numerr != nil && count  {
-			currentrune = string(r)
-			fmt.Printf("%s current\n", currentrune)
-		} else if numerr != nil && count {
-			var countnum, err = strconv.Atoi(string(count))
-			if err != nil {
-				fmt.Printf("%s err on count %d \n", err, count)
+			var countnum, errcount = strconv.Atoi(string(count))
+			fmt.Printf("%s is letter\n", string(r))
+			if errcount != nil {
+				result.WriteString(string(r))
 			} else {
-				var str = strings.Repeat(currentrune, countnum-1)
-				fmt.Printf("%s str \n", str)
-				result.WriteString(str)
+				var repeated = strings.Repeat(currentStr, countnum-1)
+				result.WriteString(repeated)
+				result.WriteString(string(r))
 				count = ""
-				currentrune = string(r)
 			}
-
-		} else if numerr == nil && !count {
-			count = string(num)
-			fmt.Printf("%d num && count == \n", count)
-		} else if numerr == nil && count {
-			fmt.Printf("%s count \n", count)
-			count = count + string(num)
+			currentStr = string(r)
+		} else if unicode.IsNumber(r) {
+			count += string(r)
+			fmt.Printf("%s is number\n", count)
+			if i == len(s)-1 {
+				var countnum, errcount = strconv.Atoi(string(count))
+				if errcount != nil {
+					fmt.Printf("%s its last number error\n", errcount)
+				} else {
+					fmt.Printf("%s its last number\n", count)
+					var repeated = strings.Repeat(currentStr, countnum-1)
+					result.WriteString(repeated)
+				}
+			}
+		} else {
+			return "", errors.New("symbol is not alowed at position " + string(i))
 		}
-		fmt.Printf("%s starts at byte position %d\n", string(r), i)*/
 	}
-	//return "xx", "error"
 	return result.String(), nil
 }
