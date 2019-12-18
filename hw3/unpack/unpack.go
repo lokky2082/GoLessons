@@ -41,6 +41,7 @@ func Unpack(s string) (string, error) {
 				}
 			}
 		} else {
+			// как в ошибку передать переменную индекса?
 			return "", errors.New("symbol is not alowed at position " + string(i))
 		}
 	}
