@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	var unpacked, err = unpack.Unpack("ж15/b4")
+	var unpacked, err = unpack.Unpack("ж15b4")
 	if err != nil {
 		fmt.Printf("unpackedErr: %s\n", err)
 	} else {
