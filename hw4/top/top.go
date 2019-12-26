@@ -1,6 +1,8 @@
 package top
 
-import "fmt"
+import (
+	"fmt"
+)
 
 //
 func Top(n int, s string) (string, error) {
